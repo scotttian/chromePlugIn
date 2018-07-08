@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Stocks Analyzer</title>
+
+    <script src="angular.min.js"></script>
+    <script src="tab.js"></script>
+    <link href="tab_style.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body ng-app="myApp">
+    <section class='left_section'  ng-controller="myCtrl">
+      <input placeholder="add your stocks ticker" ng-model="single_stock">
+      </input>
+      <button ng-click="myFunc()">add to the list
+      </button>
+      <div class='stock_block' ng-repeat="(key, value) in stocksWithPrices">
+        <div ng-class='value.upOrDown'>
+        {{key}} <a href="javascript:void(0)" ng-click="delete_stocks(key)">delete</a>
+        <br>
+        {{value.price}}
+        <br>
+        {{value.change}}
+        <br>
+        {{value.changePercent}}%
+        <br>
+      </div>
+      </div>
+    </section>
+    <section class='center_section'>
+      <h1>Good Day</h1>
+    </section>
+  </body>
+</html>
