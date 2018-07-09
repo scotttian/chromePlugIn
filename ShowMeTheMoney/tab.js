@@ -1,15 +1,34 @@
-
-
 var app = angular.module('myApp', []);
+
+
+// app.controller('Ctrl', ['$scope', function($scope) {
+// $scope.date = new Date();
+// }])
+
+app.run(function($rootScope,$interval){
+    $rootScope.AssignedDate = Date; // 'Date' could be assigned too of course:)
+
+    $interval(function(){
+        // nothing is required here, interval triggers digest automaticaly
+    },1000)
+})
+
 app.controller('myCtrl', ['$scope', function($scope) {
+
+
 
   var set = new Set([]);
 
   $scope.stocks = Array.from(set);
   $scope.stocksWithPrices = {};
+  $scope.addStockShown = false;
   loadData_withprice();
 
     $scope.count = 0;
+    $scope.addStock = function(){
+      $scope.addStockShown = !$scope.addStockShown;
+    }
+
     $scope.myFunc = function() {
       storeData();
       loadData();

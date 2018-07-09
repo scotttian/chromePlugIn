@@ -7,27 +7,36 @@
     <script src="tab.js"></script>
     <link href="tab_style.css" type="text/css" rel="stylesheet" />
   </head>
-  <body ng-app="myApp">
-    <section class='left_section'  ng-controller="myCtrl">
-      <input placeholder="add your stocks ticker" ng-model="single_stock">
-      </input>
-      <button ng-click="myFunc()">add to the list
+  <body ng-app="myApp" ng-controller="myCtrl">
+    <section class='left_section'  >
+
+      <button ng-click="addStock()">add
       </button>
       <div class='stock_block' ng-repeat="(key, value) in stocksWithPrices">
-        <div ng-class='value.upOrDown'>
-        {{key}} <a href="javascript:void(0)" ng-click="delete_stocks(key)">delete</a>
-        <br>
-        {{value.price}}
-        <br>
-        {{value.change}}
-        <br>
-        {{value.changePercent}}%
+        <div class='stockQuote' ng-class='value.upOrDown'>
+        <div class='ticker'>{{key}}</div>
+        <a class='delete' href="javascript:void(0)" ng-click="delete_stocks(key)">delete</a>
+        <div class='price'>
+          <span class='current_price'>${{value.price}}</span>
+          <br>
+          <span class='current_price_change'>{{value.change}}</span>
+          <span class='current_price_change_percentage'>
+          {{value.changePercent}}%
+        </span>
+        </div>
+
         <br>
       </div>
       </div>
     </section>
-    <section class='center_section'>
-      <h1>Good Day</h1>
+    <section class='center_search_bar' ng-show="addStockShown">
+      <input placeholder="add your stocks ticker" ng-model="single_stock">
+    </input>
+    <button ng-click="myFunc()">add to the list
+    </button>
+    </section>
+    <section class='rightTimer'>
+       {{AssignedDate.now() | date:'HH:mm:ss'}}
     </section>
   </body>
 </html>

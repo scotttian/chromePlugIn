@@ -1,5 +1,4 @@
 .left_section{
-    width: 300px;
 
      position: absolute;
      top:0;
@@ -8,10 +7,11 @@
      margin: auto;
 }
 
-.center_section{
-    width: 100px;
+.center_search_bar{
+    //background-color: red;
+    width: 500px;
      height: 100px;
-
+     text-align: center;
      position: absolute;
      top:0;
      bottom: 0;
@@ -21,12 +21,65 @@
      margin: auto;
 }
 
+.rightTimer{
+  width: 200px;
+  padding:20px;
+   height: 100px;
+   text-align: center;
+   position: absolute;
+   top:0;
+   right: 0;
+   margin: auto;
+   font-size: 30px;
+}
+
+.stockQuote{
+  position: relative;
+  width: 200px;
+  margin:10px 0px;
+  padding:10px 10px;
+
+}
+
 .up{
-  background-color:green;
+  background-color:#00b894;
   color:white;
 }
 
 .down{
-  background-color:red;
+  background-color:#d63031;
   color:white;
+}
+
+.delete{
+  position: absolute;
+  top:0px;
+  right:0px;
+}
+
+
+.ticker{
+  font-size: 30px;
+  width: 100px;
+  display: inline-block;
+
+    vertical-align: top;
+}
+
+.price{
+    width: 80px;
+
+    display: inline-block;
+}
+
+.current_price{
+  font-size: 20px;
+}
+
+.current_price_change{
+
+}
+
+.current_price_change_percentage{
+
 }
