@@ -5,17 +5,15 @@ var app = angular.module('myApp', []);
 // $scope.date = new Date();
 // }])
 
-app.run(function($rootScope,$interval){
-    $rootScope.AssignedDate = Date; // 'Date' could be assigned too of course:)
 
-    $interval(function(){
-        // nothing is required here, interval triggers digest automaticaly
-    },1000)
-})
+app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
 
-app.controller('myCtrl', ['$scope', function($scope) {
+  $scope.AssignedDate = Date; // 'Date' could be assigned too of course:)
 
-
+  $interval(function(){
+    updatePrices();
+      // nothing is required here, interval triggers digest automaticaly
+  },1000)
 
   var set = new Set([]);
 
@@ -36,6 +34,10 @@ app.controller('myCtrl', ['$scope', function($scope) {
       $scope.$apply();
       console.log($scope.stocks);
     };
+
+    // $interval(function(){
+    //
+    // },2000);
 
     $scope.delete_stocks = function(ticker) {
       loadData();
