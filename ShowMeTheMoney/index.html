@@ -15,7 +15,7 @@
       <div class='stock_block' ng-repeat="(key, value) in stocksWithPrices">
         <div class='stockQuote' ng-class='value.upOrDown'>
         <div class='ticker'>{{key}}</div>
-        <a class='delete' href="javascript:void(0)" ng-click="delete_stocks(key)">delete</a>
+        <a class='delete' href="javascript:void(0)" ng-click="delete_stocks(key)"><img src="icons/cancel.png" alt="Smiley face"></a>
         <div class='price'>
           <span class='current_price'>${{value.price}}</span>
           <br>
@@ -32,7 +32,7 @@
     <section class='center_search_bar' ng-show="addStockShown">
       <input placeholder="add your stocks ticker" ng-model="single_stock">
     </input>
-    <button ng-click="myFunc()">add to the list
+    <button ng-click="addStockToList()">add to the list
     </button>
     </section>
     <section class='rightTimer'>

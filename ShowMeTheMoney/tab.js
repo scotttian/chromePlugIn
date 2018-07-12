@@ -7,6 +7,8 @@ var app = angular.module('myApp', []);
 
 
 app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
+  //This is how you clear the data
+  //chrome.storage.sync.clear();
 
   $scope.AssignedDate = Date; // 'Date' could be assigned too of course:)
 
@@ -27,7 +29,7 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
       $scope.addStockShown = !$scope.addStockShown;
     }
 
-    $scope.myFunc = function() {
+    $scope.addStockToList = function() {
       storeData();
       loadData();
       updatePrices();
@@ -95,7 +97,6 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
         var ticker = $scope.stocks[i];
         getData(ticker);
       }
-
     }
 
 
@@ -111,6 +112,8 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
              console.log(quotes);
              //alert(quotes['quote']['latestPrice']);
              console.log(quotes['quote']['latestPrice']);
+             stocksWithPricesPar={};
+
              $scope.stocksWithPrices[ticker] = {}
              $scope.stocksWithPrices[ticker]['price'] = quotes['quote']['latestPrice'];
              $scope.stocksWithPrices[ticker]['change'] = quotes['quote']['change'].toFixed(2);
