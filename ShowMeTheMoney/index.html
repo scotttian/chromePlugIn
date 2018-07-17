@@ -106,14 +106,24 @@
 
             <div class='single_IPO_time'>{{single_IPO.expectedDate}}</div>
             <div class='single_IPO_ticker'>
-              <span class='single_IPO_ticker_ticker'>{{single_IPO.symbol}}</span>
+              <span class='single_IPO_ticker_ticker'>{{single_IPO.symbol}}({{single_IPO.market.split(' ')[0]}})</span>
               <br>
               <span class='single_IPO_ticker_name'>{{single_IPO.companyName | limitTo: 15}}{{single_IPO.companyName.length > 15 ? '...' : ''}}</span>
             </div>
           </div>
           </div>
-        </div>
-      </div>
+
+          <div class='market_Crypto market_data_category'>
+            <h3>Crypto</h3>
+            <div class='single_Crypto' ng-repeat="single_Crypto in marketOverView.crypto">
+              <div class='single_Crypto_ticker'>
+                <span class='single_Crypto_ticker_ticker'>{{single_Crypto.symbol}}</span>
+                <br>
+                <span class='single_Crypto_ticker_name'>{{single_Crypto.companyName | limitTo: 15}}{{single_Crypto.companyName.length > 15 ? '...' : ''}}</span>
+              </div>
+              <div class='single_Crypto_change ' ng-class="{'up': single_Crypto.changePercent>0 , 'down': single_Crypto.changePercent<0 } ">{{single_Crypto.changePercent * 100 | number: 2}}%</div>
+            </div>
+          </div>
     </section>
     <section class='center_search_bar' ng-show="addStockShown">
       <input placeholder="add your stocks ticker" ng-model="single_stock">
