@@ -4,29 +4,115 @@
     <title>Suntory Time</title>
 
     <script src="angular.min.js"></script>
-    <script src="tab.js"></script>
+    <script src="tab_v2.js"></script>
     <link href="tab_style.css" type="text/css" rel="stylesheet" />
   </head>
   <body ng-app="myApp" ng-controller="myCtrl">
     <section class='left_section'  >
-
-      <button ng-click="addStock()">add
+      <h3>Watch List
+        <span><button ng-click="addStock()">add
       </button>
-      <div class='stock_block' ng-repeat="(key, value) in stocksWithPrices">
-        <div class='stockQuote' ng-class='value.upOrDown'>
-        <div class='ticker'>{{key}}</div>
-        <a class='delete' href="javascript:void(0)" ng-click="delete_stocks(key)"><img src="icons/cancel.png" alt="Smiley face"></a>
+      <button ng-click="clearStock()">clear
+      </button></span>
+    </h3>
+
+      <div class='stock_block' ng-repeat="a_single_stock in stocksWithPrices">
+        <div class='stockQuote' ng-class='a_single_stock.upOrDown'>
+        <div class='ticker'>{{a_single_stock.ticker}}</div>
+        <a class='delete' href="javascript:void(0)" ng-click="delete_stocks(a_single_stock.ticker)"><img src="icons/icons8-delete-15.png" alt="Smiley face"></a>
         <div class='price'>
-          <span class='current_price'>${{value.price}}</span>
+          <span class='current_price'>${{a_single_stock.price}}</span>
           <br>
-          <span class='current_price_change'>{{value.change}}</span>
+          <span class='current_price_change'>{{a_single_stock.change}}</span>
           <span class='current_price_change_percentage'>
-          {{value.changePercent}}%
+          {{a_single_stock.changePercent}}%
         </span>
         </div>
 
         <br>
       </div>
+      </div>
+    </section>
+    <section class='center_data'>
+      <div class='market_index'>
+        <h3>Market</h3>
+        <div class='stockQuote' ng-class='market_index.DIA.upOrDown'>
+        <div class='index_name'>{{market_index.DIA.ticker}}</div>
+        <div class='price'>
+          <span class='current_price'>${{market_index.DIA.price}}</span>
+          <br>
+          <span class='current_price_change'>{{market_index.DIA.change}}</span>
+          <span class='current_price_change_percentage'>
+          {{market_index.DIA.changePercent}}%
+        </span>
+        </div>
+      </div>
+
+      <div class='stockQuote' ng-class='market_index.SPY.upOrDown'>
+      <div class='index_name'>{{market_index.SPY.ticker}}</div>
+      <div class='price'>
+        <span class='current_price'>${{market_index.SPY.price}}</span>
+        <br>
+        <span class='current_price_change'>{{market_index.SPY.change}}</span>
+        <span class='current_price_change_percentage'>
+        {{market_index.SPY.changePercent}}%
+      </span>
+      </div>
+    </div>
+
+    <div class='stockQuote' ng-class='market_index.IWM.upOrDown'>
+    <div class='index_name'>{{market_index.IWM.ticker}}</div>
+    <div class='price'>
+      <span class='current_price'>${{market_index.IWM.price}}</span>
+      <br>
+      <span class='current_price_change'>{{market_index.IWM.change}}</span>
+      <span class='current_price_change_percentage'>
+      {{market_index.IWM.changePercent}}%
+    </span>
+    </div>
+  </div>
+
+    </div>
+      <div class='market_info'>
+        <div class='top_gainer market_data_category'>
+          <h3>Gainers</h3>
+          <div class='single_gainer' ng-repeat="single_gainer in marketOverView.gainers">
+            <div class='single_gainer_ticker'>
+              <span class='single_gainer_ticker_ticker'>{{single_gainer.symbol}}</span>
+              <br>
+              <span class='single_gainer_ticker_name'>{{single_gainer.companyName | limitTo: 8}}{{single_gainer.companyName.length > 8 ? '...' : ''}}</span>
+            <div class='single_gainer_change'>{{single_gainer.changePercent * 100 | number: 2}}%</div>
+          </div>
+        </div>
+        </div>
+        <div class='top_losers market_data_category'>
+          <h3>Losers</h3>
+          <div class='single_loser' ng-repeat="single_loser in marketOverView.losers">
+            <div class='single_loser_ticker'>
+              <span class='single_loser_ticker_ticker'>{{single_loser.symbol}}</span>
+              <br>
+              <span class='single_loser_ticker_name'>{{single_loser.companyName | limitTo: 8}}{{single_loser.companyName.length > 8 ? '...' : ''}}</span>
+            <div class='single_loser_change'>{{single_loser.changePercent * 100 | number: 2}}%</div>
+          </div>
+        </div>
+        </div>
+        <div class='market_earning market_data_category'>
+          <h3>Earnings</h3>
+
+        </div>
+        <div class='market_IPO market_data_category'>
+          <h3>IPO Calender</h3>
+          <div class='single_IPO' ng-repeat="single_IPO in marketOverView.upcomingData.ipos.rawData">
+
+            <div class='single_IPO_time'>{{single_IPO.expectedDate}}</div>
+            <div class='single_IPO_ticker'>
+              <span class='single_IPO_ticker_ticker'>{{single_IPO.symbol}}</span>
+              <br>
+              <span class='single_IPO_ticker_name'>{{single_IPO.companyName | limitTo: 15}}{{single_IPO.companyName.length > 15 ? '...' : ''}}</span>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class='center_search_bar' ng-show="addStockShown">

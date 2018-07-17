@@ -41,6 +41,12 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
     //
     // },2000);
 
+    $scope.clearStock = function(){
+      chrome.storage.sync.clear();
+    }
+
+
+
     $scope.delete_stocks = function(ticker) {
       loadData();
       set.delete(ticker);
