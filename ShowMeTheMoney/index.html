@@ -98,7 +98,26 @@
         </div>
         <div class='market_earning market_data_category'>
           <h3>Earnings</h3>
+          <h4>bto</h4>
+          <div class='single_Earning' ng-repeat="single_Earning in marketOverView.todayData.earnings.bto">
 
+            <div class='single_Earning_ticker'>
+              <span class='single_Earning_ticker_ticker'>{{single_Earning.symbol}}</span>
+              <br>
+              <span class='single_IPO_ticker_name'>{{single_Earning.quote.companyName | limitTo: 15}}{{single_Earning.quote.companyName.length > 15 ? '...' : ''}}</span>
+              <span class='single_IPO_ticker_headline'>{{single_Earning.headline}}</span>
+            </div>
+          </div>
+          <h4>bto</h4>
+          <div class='single_Earning' ng-repeat="single_Earning in marketOverView.todayData.earnings.amc">
+
+            <div class='single_Earning_ticker'>
+              <span class='single_Earning_ticker_ticker'>{{single_Earning.symbol}}</span>
+              <br>
+              <span class='single_IPO_ticker_name'>{{single_Earning.quote.companyName | limitTo: 15}}{{single_Earning.quote.companyName.length > 15 ? '...' : ''}}</span>
+              <span class='single_IPO_ticker_headline'>{{single_Earning.headline}}</span>
+            </div>
+          </div>
         </div>
         <div class='market_IPO market_data_category'>
           <h3>IPO Calender</h3>
@@ -125,11 +144,12 @@
             </div>
           </div>
     </section>
+    <div class='background_color' ng-click="addStock()" ng-show="addStockShown">
+    </div>
     <section class='center_search_bar' ng-show="addStockShown">
-      <input placeholder="add your stocks ticker" ng-model="single_stock">
-    </input>
-    <button ng-click="addStockToList()">add to the list
-    </button>
+     <input type="text" class='input-round' placeholder="Add your stock ticker"required ng-model="single_stock">
+   </input>
+    <div ng-click="addStockToList()" class="enjoy-css">Add</div>
     </section>
     <section class='rightTimer'>
        {{AssignedDate.now() | date:'HH:mm:ss'}}
