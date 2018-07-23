@@ -147,9 +147,12 @@
     <div class='background_color' ng-click="addStock()" ng-show="addStockShown">
     </div>
     <section class='center_search_bar' ng-show="addStockShown">
-     <input type="text" class='input-round' placeholder="Add your stock ticker"required ng-model="single_stock">
+     <input type="text" class='input-round' ng-keyup="searchTicker()" placeholder="Add your stock ticker"required ng-model="single_stock">
    </input>
     <div ng-click="addStockToList()" class="enjoy-css">Add</div>
+    <div class='possibleResult'>
+      <div class='singlePossibleResult' ng-click="selectSearch(oneResult)" ng-repeat="oneResult in searchResults">{{oneResult}}</div>
+    </div>
     </section>
     <section class='rightTimer'>
        {{AssignedDate.now() | date:'HH:mm:ss'}}

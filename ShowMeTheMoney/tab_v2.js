@@ -12,6 +12,11 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
     $scope.stocksWithPrices = [];
     $scope.marketOverView ={};
 
+    $scope.allTickers = [];
+
+    $scope.searchResults =[];
+    getAllTickers();
+
     loadData();
 
     $interval(function(){
@@ -30,6 +35,24 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
     $scope.addStockToList = function() {
       storeData();
     };
+
+    $scope.searchTicker = function(){
+    //  alert($scope.single_stock);
+    //console.log($scope.allTickers);
+      var results = $scope.allTickers.filter(function(a){
+        return a.toLowerCase().search($scope.single_stock.toLowerCase())>=0;
+      })
+    //  console.log(results);
+      $scope.searchResults=results;
+      //$scope.$apply();
+    }
+
+    $scope.selectSearch = function(name){
+      var regExp = /\(([^)]+)\)/;
+      var matches = regExp.exec(name);
+
+      $scope.single_stock=matches[1];
+    }
 
     $scope.delete_stocks = function(ticker) {
       var index = $scope.stocksWithOrder[ticker];
@@ -160,6 +183,23 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
         }
       };
       xhttp.open("GET", "https://api.iextrading.com/1.0/stock/"+ticker+"/batch?types=quote&range=1m&last=1", true);
+      xhttp.send();
+    }
+
+    function getAllTickers(){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+           var tickers = JSON.parse(xhttp.responseText);
+           tickers.map(function(a){
+             $scope.allTickers.push(a["name"]+"("+a['symbol']+")");
+           })
+
+           $scope.$apply();
+        }
+      };
+      xhttp.open("GET", "https://api.iextrading.com/1.0/ref-data/symbols", true);
       xhttp.send();
     }
 
