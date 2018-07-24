@@ -140,7 +140,7 @@
                 <br>
                 <span class='single_Crypto_ticker_name'>{{single_Crypto.companyName | limitTo: 15}}{{single_Crypto.companyName.length > 15 ? '...' : ''}}</span>
               </div>
-              <div class='single_Crypto_change ' ng-class="{'up': single_Crypto.changePercent>0 , 'down': single_Crypto.changePercent<0 } ">{{single_Crypto.changePercent * 100 | number: 2}}%</div>
+              <div class='single_Crypto_change ' ng-class="{'up': single_Crypto.changePercent>0 , 'down': single_Crypto.changePercent<0 } ">{{single_Crypto.changePercent * 100 | number: 2}}%<br><span class='single_Crypto_price'>${{single_Crypto.latestPrice}}</span></div>
             </div>
           </div>
     </section>

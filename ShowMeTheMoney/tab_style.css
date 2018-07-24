@@ -69,6 +69,10 @@ vertical-align: top;
   padding: 4px 5px;
 }
 
+.single_Crypto_price{
+  font-size: 10px;
+}
+
 .single_gainer_ticker .single_loser_ticker .single_Crypto_ticker{
   display: inline-block;
   width: 50%;
@@ -174,7 +178,11 @@ vertical-align: top;
      margin: auto;
 }
 
-
+.possibleResult{
+  height: 400px;
+  overflow: scroll;
+  width: 220px;
+}
 
 .singlePossibleResult{
   background-color: white;

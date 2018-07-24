@@ -21,6 +21,8 @@ app.controller('myCtrl', ['$scope','$interval', function($scope,$interval) {
 
     $interval(function(){
       updatePrices();
+      updateIndex();
+      updateIndex();
     },1000)
 
     $scope.market_index ={};
